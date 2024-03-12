@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
 
 class CalculatorPage extends StatefulWidget {
-  const CalculatorPage({super.key});
+  const CalculatorPage({Key? key});
 
   @override
   _CalculatorPageState createState() => _CalculatorPageState();
@@ -13,26 +13,37 @@ class _CalculatorPageState extends State<CalculatorPage> {
   var answer = '0';
 
   final List<String> buttons = [
-    'C', 'DEL', '+', '-',
-    '7', '8', '9', '=',
-    '4', '5', '6', '.',
-    '1', '2', '3', '0',
+    'C',
+    'DEL',
+    '+',
+    '-',
+    '7',
+    '8',
+    '9',
+    '=',
+    '4',
+    '5',
+    '6',
+    '.',
+    '1',
+    '2',
+    '3',
+    '0',
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Column(
-        children: [
-          Expanded(
-            flex: 2,
-            child: Container(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height: 70), // Adding some space at the top
+            Container(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Container(
-                    padding: EdgeInsets.only(right: 300, top: 70, left: 300),
                     alignment: Alignment.centerRight,
                     child: Text(
                       userInput,
@@ -44,7 +55,6 @@ class _CalculatorPageState extends State<CalculatorPage> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(right: 300, left: 300),
                     alignment: Alignment.centerRight,
                     child: Text(
                       answer,
@@ -58,14 +68,14 @@ class _CalculatorPageState extends State<CalculatorPage> {
                 ],
               ),
             ),
-          ),
-          Expanded(
-            flex: 4,
-            child: Container(
+            SizedBox(
+                height: 20), // Adding some space between display and buttons
+            Container(
               height: 400,
-              width: 400,
               margin: EdgeInsets.symmetric(horizontal: 12),
               child: GridView.builder(
+                physics:
+                    NeverScrollableScrollPhysics(), // Disable GridView scrolling
                 itemCount: buttons.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 4,
@@ -86,8 +96,8 @@ class _CalculatorPageState extends State<CalculatorPage> {
                 },
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -126,7 +136,7 @@ class MyButton extends StatelessWidget {
   final Color color;
   final Color textColor;
   final String buttonText;
-  final Function buttontapped;
+  final Function() buttontapped;
 
   MyButton({
     required this.color,
@@ -138,7 +148,7 @@ class MyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => buttontapped(),
+      onTap: buttontapped,
       child: Container(
         decoration: BoxDecoration(
           color: color,

@@ -3,15 +3,16 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:tugastpm1/bottomnavigation.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  const LoginPage({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Login Page"),
-        ),
-        body: Center(
+      appBar: AppBar(
+        title: Text("Login Page"),
+      ),
+      body: SingleChildScrollView(
+        child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -44,21 +45,27 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               Container(
-                  height: 80,
-                  padding: const EdgeInsets.all(20),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: const Size.fromHeight(50),
-                    ),
-                    child: const Text('Login'),
-                    onPressed: () {
-                      Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => BottomNavigation()),
-                      );
-                    },
-                  )),
+                height: 80,
+                padding: const EdgeInsets.all(20),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size.fromHeight(50),
+                  ),
+                  child: const Text('Login'),
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => BottomNavigation(),
+                      ),
+                    );
+                  },
+                ),
+              ),
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

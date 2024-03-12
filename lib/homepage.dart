@@ -22,7 +22,7 @@ class HomePageState extends State<HomePage> {
       },
       {
         'nama': 'Niken Riri',
-        'nim': ' ',
+        'nim': '123200091',
         'kelas': 'IF-E',
       },
     ]
